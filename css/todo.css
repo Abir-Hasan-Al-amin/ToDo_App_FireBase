@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #222831;
+    color: #EEEEEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Croissant One', cursive;
+}
+.container{
+    width: 60%;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.addTodo{
+    margin: 30px;
+    width: 50%;
+    height: 50px;
+}
+form{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 65% 25%; 
+    align-items: center;
+    justify-content: space-evenly;
+}
+form input , form button{
+    height: 100%;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Croissant One', cursive;
+}
+form input{
+    background-color: #393E46;
+    color: #EEEEEE;
+    outline: 0;
+    padding-inline: 20px;
+}
+form button{
+background-color: #00ADB5;
+color: #EEEEEE;
+cursor: pointer;
+}
+form button:hover{
+    box-shadow: 0px 4px 4px rgba(168, 163, 163, 0.2);
+}
+.addList{
+    margin: 30px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid #EEEEEE;
+    border-radius: 10px;
+    padding: 25px;
+}
+.list{
+    width: 100%;
+    height: 80px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 10px ;
+    border-bottom: 2px solid #EEEEEE;
+}
+.delAndedit{
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.editList{
+    background-color: #393E46;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.delList{
+    background-color: #393E46;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list:last-child {
+    border: none;
+}
+.fa-regular,.fa-solid {
+    cursor: pointer;
+}
+.delButton button{
+background-color: #393E46;
+color: #F45050;
+font-size: 20px;
+border: none;
+border-radius: 5px;
+font-family: 'Croissant One', cursive;
+padding: 5px 15px;
+cursor: pointer;
+margin: 40px;
+}
+.delButton button:hover{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}

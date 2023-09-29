@@ -4,10 +4,47 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/todo.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/todo.css">
     <title>Todo App</title>
 </head>
 <body>
-    <h1>Fuck you</h1>
+    <section class="container">
+        <h1>Todo List</h1>
+        <section class="addTodo">
+            <form>
+                <input type="text" id="addTask">
+                <button type="submit">Add</button>
+            </form>
+        </section>
+        <section class="addList">
+            <section class="list">
+                <p>First task</p>
+                <section class="delAndedit">
+                    <section class="editList">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                    </section>
+                    <section class="delList">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </section>
+                </section>
+            </section>
+            <section class="list">
+                <p>First task</p>
+                <section class="delAndedit">
+                    <section class="editList">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                    </section>
+                    <section class="delList">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <section class="delButton">
+            <button>Delete All</button>
+        </section>
+    </section>
 </body>
 <script type="module" src="js/todo.js"></script>
 </html>
