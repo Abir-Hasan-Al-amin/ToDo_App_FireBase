@@ -1,9 +1,7 @@
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
     // Import Firebase Authentication and Realtime Database
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-    import { getDatabase} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,9 +20,7 @@
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
     const auth = getAuth(app);
-    const database = getDatabase(app);
 
 // Sign in
 const loginFrom = document.getElementById('loginFrom');
@@ -41,15 +37,14 @@ loginFrom.addEventListener('submit',e=>{
         return;
     }
     signInWithEmailAndPassword(auth, userLogin, passLogin)
-    .then((userCredential) => {
+    .then(() => {
     // Signed in 
-    const user = userCredential.user;
-    alert('Signed in');
+    document.getElementById('userLogin').value="";
+    document.getElementById('passLogin').value="";
+    window.location.href = 'todo.html';
     // ...
     })
-    .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
+    .catch(() => {
     alert('no account or incorrect email/password');
     });
 })

@@ -47,11 +47,10 @@
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
+                return writeUserData(user.uid, name, email, password);
+            }).then(()=>{
                 alert('User created');
-                writeUserData(user.uid, name, email, password);
-                document.getElementById("nameSign").value = "";
-                document.getElementById("userSign").value = "";
-                document.getElementById("passSign").value = "";
+                location.href='index.html';
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -65,7 +64,7 @@
             });
     });
     function writeUserData(userId, name, email, password) {
-        set(ref(database, 'users/' + userId), {
+        return set(ref(database, 'users/' + userId), {
             username: name,
             email: email,
             password: password
