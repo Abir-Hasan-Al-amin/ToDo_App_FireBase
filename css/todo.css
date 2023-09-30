@@ -10,10 +10,10 @@ body{
     background-color: #222831;
     color: #EEEEEE;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     font-family: 'Croissant One', cursive;
+    padding-top: 60px;
 }
 .container{
     width: 60%;
@@ -141,3 +141,118 @@ margin: 40px;
 .logOut button:hover{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
+/* responsive */
+@media screen and (max-width: 1540px){
+    .container{
+        width: 70%;
+    }
+    .logOut {
+        align-self: flex-start;
+        margin-inline:100px;
+    }
+    .logOut button{
+        font-size: 20px;
+        padding: 15px;
+    }
+    .delAndedit{
+        width: 100px;
+    }
+    .addList{
+        width: 100%;
+    }
+    .addTodo{
+        margin: 30px;
+        width: 80%;
+        height: 50px;
+    }
+}
+@media screen and (max-width: 1280px){
+    .logOut button{
+        padding: 10px;
+    }
+}
+@media screen and (max-width: 1024px){
+    .container{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 924px){
+    .container{
+        width: 90%;
+    }
+    .logOut {
+        align-self: flex-start;
+        margin-inline:40px;
+        margin-bottom: 60px;
+    }
+    .logOut button{
+        font-size: 15px;
+        padding: 10px;
+    }
+    .addTodo{
+        width: 90%;
+    }
+    body{
+        font-size: 15px;
+    }
+    form input , form button{
+        font-size: 15px;
+    }
+    .list{
+        font-size: 15px;
+    }
+    .delButton button{
+        font-size: 18px;
+        }
+}
+@media screen and (max-width: 624px){
+    .container{
+        width: 100%;
+    }
+    .logOut {
+        align-self: flex-start;
+        margin-inline:40px;
+        margin-bottom: 50px;
+    }
+    .logOut button{
+        font-size: 14px;
+        padding: 10px;
+    }
+    .addTodo{
+        width: 100%;
+    }
+    body{
+        font-size: 15px;
+    }
+    form input , form button{
+        font-size: 15px;
+    }
+    .list{
+        font-size: 15px;
+    }
+    .delAndedit{
+        width: 70px;
+    }
+    .delButton button{
+        font-size: 18px;
+        }
+    .addList{
+        padding: 15px;
+    }
+        .list{
+            padding-inline: 0px ;
+        }
+        .editList{
+            width: 30px;
+            height: 30px;
+        }
+        .delList{
+            width: 30px;
+            height: 30px;
+        }
+        body{
+            padding-top: 40px;
+        }
+}
+
+
