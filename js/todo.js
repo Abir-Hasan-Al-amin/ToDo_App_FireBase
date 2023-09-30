@@ -56,8 +56,6 @@ import { getDatabase, ref, push, onValue, set } from "https://www.gstatic.com/fi
             const taskHtml = `
                 <section class="list">
                     <section class="info">
-                        <section class="checkBox">
-                        </section>
                         <p>${task.title}</p>
                     </section>
                     <section class="delAndedit">
@@ -65,7 +63,7 @@ import { getDatabase, ref, push, onValue, set } from "https://www.gstatic.com/fi
                             <i class="fa-regular fa-pen-to-square"></i>
                         </section>
                         <section class="delList">
-                            <i class="fa-solid fa-trash-can"></i>
+                        <i class="fa-solid fa-trash-can" id="delete-${taskId}"></i>
                         </section>
                     </section>
                 </section>
@@ -90,21 +88,19 @@ addButton.addEventListener('click', function (event) {
         }
     }
 });
+let tasks = {};
 onAuthStateChanged(auth, (user) => {
     if (user) {
         const userUid = user.uid;
         const userTasksRef = ref(database, `users/${userUid}/tasks`);
         onValue(userTasksRef, (snapshot) => {
-            const tasks = snapshot.val();
-            if (tasks) {
-                renderTasks(tasks);
-            }
+            tasks = snapshot.val() || {}; // Update tasks data
+            renderTasks(tasks);
         });
     } else {
         console.log("User is not signed in.");
     }
 });
-
 const deleteAllButton = document.querySelector('.delButton button');
 deleteAllButton.addEventListener('click', function () {
     const user = auth.currentUser;
@@ -123,3 +119,45 @@ deleteAllButton.addEventListener('click', function () {
         console.error("User not authenticated");
     }
 });
+addList.addEventListener('click', function (event) {
+    if (event.target.classList.contains('fa-trash-can')) {
+        const taskId = event.target.id.replace('delete-', '');
+        deleteTask(taskId, tasks);
+    }
+});
+
+function deleteTask(taskId, tasks) {
+    const user = auth.currentUser;
+    if (user) {
+        const userUid = user.uid;
+        const taskRef = ref(database, `users/${userUid}/tasks/${taskId}`);
+        
+        set(taskRef, null)
+            .then(() => {
+                console.log("Task deleted successfully.");
+                delete tasks[taskId];
+                renderTasks(tasks);
+            })
+            .catch((error) => {
+                console.error("Error deleting task: ", error);
+            });
+    } else {
+        console.error("User not authenticated");
+    }
+}
+
+
+function updateTask(userUid, taskId, updatedTitle) {
+    const taskRef = ref(database, `users/${userUid}/tasks/${taskId}`);
+    
+    set(taskRef, {
+        title: updatedTitle
+    })
+    .then(() => {
+        console.log("Task updated successfully in Firebase");
+    })
+    .catch((error) => {
+        console.error("Error updating task in Firebase: ", error);
+    });
+}
+
