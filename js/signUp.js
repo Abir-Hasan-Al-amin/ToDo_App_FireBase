@@ -1,15 +1,7 @@
-    // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
-    // Import Firebase Authentication and Realtime Database
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+    import { getAuth, createUserWithEmailAndPassword ,sendEmailVerification} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
     import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
-
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
     apiKey: "AIzaSyD73JOiilrOH2K7t4CiPls9BTL2WYGzKo0",
     authDomain: "todoapp-9fc0e.firebaseapp.com",
@@ -47,10 +39,15 @@
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                return writeUserData(user.uid, name, email, password);
+                return writeUserData(user.uid, name, email);
             }).then(()=>{
                 alert('User created');
                 location.href='index.html';
+                //verification
+                sendEmailVerification(auth.currentUser)
+                .then(() => {
+                    console.log('email sent');
+                });
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -63,11 +60,10 @@
                 }
             });
     });
-    function writeUserData(userId, name, email, password) {
+    function writeUserData(userId, name, email) {
         return set(ref(database, 'users/' + userId), {
             username: name,
-            email: email,
-            password: password
+            email: email
         });
     }
 
@@ -96,3 +92,4 @@ function validField(field) {
         return true;
     }
 }
+

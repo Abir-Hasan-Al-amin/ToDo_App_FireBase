@@ -1,8 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 import { getDatabase, ref, push, onValue, set } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
     apiKey: "AIzaSyD73JOiilrOH2K7t4CiPls9BTL2WYGzKo0",
     authDomain: "todoapp-9fc0e.firebaseapp.com",
