@@ -79,6 +79,22 @@ form button:hover{
     padding-inline: 10px ;
     border-bottom: 2px solid #EEEEEE;
 }
+.info{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+.checkBox{
+    background-color: #393E46;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.checkBox:hover{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
 .delAndedit{
     width: 150px;
     display: flex;
@@ -249,6 +265,10 @@ margin: 40px;
         .delList{
             width: 30px;
             height: 30px;
+        }
+        .checkBox{
+            width: 25px;
+            height: 25px;
         }
         body{
             padding-top: 40px;
