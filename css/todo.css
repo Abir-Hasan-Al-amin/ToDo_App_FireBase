@@ -12,6 +12,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     font-family: 'Croissant One', cursive;
 }
 .container{
@@ -120,5 +121,23 @@ cursor: pointer;
 margin: 40px;
 }
 .delButton button:hover{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+.logOut {
+    align-self: flex-start;
+    margin-inline:200px;
+}
+.logOut button{
+    cursor: pointer;
+    font-family: 'Croissant One', cursive;
+    background-color: #F45050;
+    color: #EEEEEE;
+    border: none;
+    outline: 0;
+    font-size: 25px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.logOut button:hover{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
