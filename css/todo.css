@@ -58,6 +58,7 @@ cursor: pointer;
 form button:hover{
     box-shadow: 0px 4px 4px rgba(168, 163, 163, 0.2);
 }
+
 .addList{
     margin: 30px;
     width: 90%;
@@ -68,6 +69,21 @@ form button:hover{
     border: 2px solid #EEEEEE;
     border-radius: 10px;
     padding: 25px;
+}
+.info{
+    height: 60%;
+    width: 100%;
+    padding: 5px;
+}
+.info input{
+    width: 100%;
+    height: 100%;
+    outline: 0;
+    font-size: 20px;
+    border: none;
+    font-family: 'Croissant One', cursive;
+    background-color: #222831;
+    color: #EEEEEE;
 }
 .list{
     width: 100%;
@@ -92,7 +108,7 @@ form button:hover{
     align-items: center;
 }
 .editList{
-    background-color: #393E46;
+    background-color: #00ADB5;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -100,8 +116,11 @@ form button:hover{
     justify-content: center;
     align-items: center;
 }
+.save{
+    display: none;
+}
 .delList{
-    background-color: #393E46;
+    background-color: #F45050;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -210,6 +229,12 @@ margin: 40px;
     .delButton button{
         font-size: 18px;
         }
+        .info input{
+            font-size: 15px;
+        }
+        .info{
+            width: 90%;
+        }
 }
 @media screen and (max-width: 624px){
     .container{
@@ -226,15 +251,6 @@ margin: 40px;
     }
     .addTodo{
         width: 100%;
-    }
-    body{
-        font-size: 15px;
-    }
-    form input , form button{
-        font-size: 15px;
-    }
-    .list{
-        font-size: 15px;
     }
     .delAndedit{
         width: 70px;
@@ -258,6 +274,9 @@ margin: 40px;
         }
         body{
             padding-top: 40px;
+        }
+        .info{
+            width: 80%;
         }
 }
 

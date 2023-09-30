@@ -55,22 +55,68 @@ import { getDatabase, ref, push, onValue, set } from "https://www.gstatic.com/fi
             const task = tasks[taskId];
             const taskHtml = `
                 <section class="list">
-                    <section class="info">
-                        <p>${task.title}</p>
+                <section class="info">
+                    <input type="text" value="${task.title}" readonly>
+                </section>
+                <section class="delAndedit">
+                    <section class="editList">
+                    <i class="fa-regular fa-pen-to-square edit-icon" data-task-id="${taskId}"></i>
+                    <i class="fa-regular fa-floppy-disk save" data-task-id="${taskId}"></i>
                     </section>
-                    <section class="delAndedit">
-                        <section class="editList">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                        </section>
-                        <section class="delList">
-                        <i class="fa-solid fa-trash-can" id="delete-${taskId}"></i>
-                        </section>
+                    <section class="delList">
+                    <i class="fa-solid fa-trash-can" id="delete-${taskId}"></i>
                     </section>
                 </section>
+            </section>
             `;
             addList.innerHTML += taskHtml;
         }
-    }
+    const editIcons = document.querySelectorAll('.edit-icon');
+    const saveIcons = document.querySelectorAll('.fa-regular.fa-floppy-disk');
+    const inputFields = document.querySelectorAll('.info input');
+
+    editIcons.forEach((editIcon, index) => {
+        editIcon.addEventListener('click', () => {
+            editIcon.classList.toggle('save');
+            saveIcons[index].classList.toggle('save');
+            inputFields[index].removeAttribute('readonly');
+            inputFields[index].style.border = '2px solid #393E46';
+            inputFields[index].focus();
+            inputFields[index].selectionStart = inputFields[index].value.length;
+            inputFields[index].selectionEnd = inputFields[index].value.length;
+            document.querySelectorAll('.editList')[index].style.backgroundColor = '#4AA96C';
+        });
+    });
+
+    saveIcons.forEach((saveIcon, index) => {
+        saveIcon.addEventListener('click', () => {
+            editIcons[index].classList.toggle('save');
+            saveIcon.classList.toggle('save');
+    
+            inputFields[index].setAttribute('readonly', 'readonly');
+            inputFields[index].style.border = 'none';
+            document.querySelectorAll('.editList')[index].style.backgroundColor = '#00ADB5';
+    
+            const updatedValue = inputFields[index].value;
+            const taskId = saveIcon.getAttribute('data-task-id');
+            const user = auth.currentUser;
+            
+            if (user) {
+                const userUid = user.uid;
+                if (updatedValue.trim() !== '') {
+                    updateTask(userUid, taskId, updatedValue);
+                } else {
+                    inputFields[index].value = tasks[taskId].title;
+                    console.log("Updated value is empty, not updating in Firebase.");
+                }
+            } else {
+                console.error("User not authenticated");
+            }
+        });
+    });
+    
+    
+}
 
 const addButton = document.querySelector('.addTodo button');
 addButton.addEventListener('click', function (event) {
@@ -88,13 +134,14 @@ addButton.addEventListener('click', function (event) {
         }
     }
 });
+
 let tasks = {};
 onAuthStateChanged(auth, (user) => {
     if (user) {
         const userUid = user.uid;
         const userTasksRef = ref(database, `users/${userUid}/tasks`);
         onValue(userTasksRef, (snapshot) => {
-            tasks = snapshot.val() || {}; // Update tasks data
+            tasks = snapshot.val() || {}; 
             renderTasks(tasks);
         });
     } else {
@@ -145,8 +192,6 @@ function deleteTask(taskId, tasks) {
         console.error("User not authenticated");
     }
 }
-
-
 function updateTask(userUid, taskId, updatedTitle) {
     const taskRef = ref(database, `users/${userUid}/tasks/${taskId}`);
     
@@ -160,4 +205,3 @@ function updateTask(userUid, taskId, updatedTitle) {
         console.error("Error updating task in Firebase: ", error);
     });
 }
-
